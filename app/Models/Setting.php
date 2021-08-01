@@ -1,0 +1,52 @@
+<?php
+
+namespace App\Models;
+
+use Astrotomic\Translatable\Translatable;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class Setting extends Model
+{
+    use Translatable;
+    use HasFactory;
+
+    protected $with=['translations'];
+
+    protected $translatedAttributes =['value'];
+
+    protected $fillable=['key','is_translatable','plain_value'];
+
+    protected $casts=['is_translatable'=>'boolean'];
+
+    public static function setmany($settings)
+    {
+        foreach ($settings as $key => $value){
+            self::set($key,$value);
+        }
+    }
+
+
+    public static function set ($key,$value)
+    {
+        if ($key === 'translatable'){
+            return static::setTranslatableSetings($value);
+
+        }
+        if (is_array($value)){
+            $value=json_encode($value);
+        }
+        static::updateOrCreate(['key'=>$key],['plain_value'=>json_encode($value)]);
+    }
+
+    public static function setTranslatableSetings($settings=[]){
+        foreach ($settings as $key => $value){
+            static::updateOrCreate(['key'=>$key],[
+                'is_translatable'=>true,
+                'value'=>$value,
+            ]);
+        }
+
+    }
+
+}
