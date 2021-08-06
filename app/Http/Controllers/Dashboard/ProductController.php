@@ -121,6 +121,8 @@ class ProductController extends Controller
     //to save images to folder only
 
     public function saveProductImages(Request $request ){
+
+
         $file = $request->file('dzfile');
         $filename = uploadImage('products', $file);
         return response()->json([
