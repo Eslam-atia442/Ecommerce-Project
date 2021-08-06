@@ -102,6 +102,7 @@
         </div>
     </div>
 
+
     @include('front.includes.footer')
     <div class="canvas-overlay"></div>
     <div id="back-top">

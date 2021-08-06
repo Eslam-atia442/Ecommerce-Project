@@ -112,7 +112,10 @@ Route::group(
             Route::get('attribute_create','AttributeController@create') -> name('admin.create.attribute.info');
             Route::post('attribute_ProductInfo','AttributeController@store') -> name('admin.store.attribute.info');
             Route::get('edit/{id}','AttributeController@edit') -> name('admin.attribute.edit');
+
             Route::post('update/{id}','AttributeController@update') -> name('admin.attribute.update');
+
+
             Route::get('delete/{id}','AttributeController@destroy') -> name('admin.attribute.delete');
 
 
@@ -123,6 +126,7 @@ Route::group(
         Route::group(['prefix' => 'options'], function () {
             Route::get('/','OptionsController@index') -> name('admin.options');
             Route::get('create','OptionsController@create') -> name('admin.create.options');
+
             Route::post('optionsInfo','OptionsController@store') -> name('admin.store.options');
             Route::get('edit/{id}','OptionsController@edit') -> name('admin.options.edit');
             Route::post('update/{id}','OptionsController@update') -> name('admin.options.update');
@@ -135,6 +139,14 @@ Route::group(
         Route::group(['prefix' => 'settings'], function () {
             Route::get('shipping-methods/{type}', 'SettingController@editShippingMethod')->name('edit.shipping.method');
             Route::put('shipping-methods/{id}', 'SettingController@updateShippingMethod')->name('update.shipping.method');
+        });
+
+        ##################################route for dashboard admin shipping setting sliders ######################################
+        Route::group(['prefix' => 'sliders'], function () {
+            Route::get('/', 'SliderController@addImages')->name('admin.sliders.create');
+            Route::post('images', 'SliderController@saveSliderImages')->name('admin.sliders.images.store');
+            Route::post('images/db', 'SliderController@saveSliderImagesDB')->name('admin.sliders.images.store.db');
+
         });
 
     });
