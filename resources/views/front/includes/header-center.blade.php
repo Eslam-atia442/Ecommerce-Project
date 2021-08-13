@@ -1,7 +1,8 @@
 <div class="header-center hidden-sm-down">
     <div class="container">
         <div class="row d-flex align-items-center">
-            <div id="_desktop_logo" class="contentsticky_logo d-flex align-items-center justify-content-start col-lg-3 col-md-3">
+            <div id="_desktop_logo"
+                 class="contentsticky_logo d-flex align-items-center justify-content-start col-lg-3 col-md-3">
                 <a href="http://demo.bestprestashoptheme.com/savemart/">
                 </a>
             </div>
@@ -17,18 +18,25 @@
                 </div>
                 <div class="contentsticky_group d-flex justify-content-end">
                     <div class="header_link_myaccount">
-                        <a class="login" href="login-1.html" rel="nofollow" title="Log in to your customer account"><i class="header-icon-account"></i></a>
+                        <a class="login" href="login-1.html" rel="nofollow" title="Log in to your customer account"><i
+                                class="header-icon-account"></i></a>
                     </div>
                     <div class="header_link_wishlist">
-                        <a href="login-2.html" title="My Wishlists">
+                        <a href="{{route('wishlist.products.index')}}" title="My Wishlists">
                             <i class="header-icon-wishlist"></i>
                         </a>
                     </div>
                     <div id="_desktop_cart">
-                        <div class="blockcart cart-preview active" data-refresh-url="//demo.bestprestashoptheme.com/savemart/en/module/ps_shoppingcart/ajax">
+                        <div class="blockcart cart-preview active" data-refresh-url="">
                             <div class="header-cart">
                                 <div class="cart-left">
-                                    <div class="shopping-cart"><i class="zmdi zmdi-shopping-cart"></i></div>
+                                    <a href="{{route('site.cart.index')}}" title="My Wishlists">
+                                        <div class="shopping-cart">
+                                            <i class="zmdi zmdi-shopping-cart"></i>
+
+                                        </div>
+
+                                    </a>
                                     <div class="cart-products-count">0</div>
                                 </div>
                                 <div class="cart-right d-flex flex-column align-self-end ml-13">
@@ -36,16 +44,9 @@
                                     <span class="cart-item"> items</span>
                                 </div>
                             </div>
-                            <div class="cart_block ">
-                                <div class="cart-block-content">
-                                    <div class="no-items">
-                                        No products in the cart
-                                    </div>
-                                </div>
-                            </div>
+
                         </div>
-                    </div>
-                </div>
+                    </div>                </div>
             </div>
         </div>
     </div>

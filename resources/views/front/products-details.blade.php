@@ -72,7 +72,7 @@
                                 <div class="col-lg-7 col-md-8 col-xs-12 mt-sm-20">
                                     <div class="product-information">
                                         <div class="product-actions">
-                                            <form action="{{route('products.reviews.store',$product -> id )}}"
+                                            <form action=""
                                                   method="post" id="add-to-cart-or-refresh" class="row">
                                                 @csrf
                                                 <input type="hidden" name="id_product" value="{{$product -> id }}"
@@ -162,15 +162,19 @@
 
                                                     <div id="_desktop_productcart_detail">
                                                         <div class="product-add-to-cart in_border">
-                                                            <div class="add">
-                                                                <button class="btn btn-primary add-to-cart"
-                                                                        data-button-action="add-to-cart" type="submit">
-                                                                    <div class="icon-cart">
-                                                                        <i class="shopping-cart"></i>
-                                                                    </div>
-                                                                    <span>Add to cart</span>
-                                                                </button>
-                                                            </div>
+
+
+                                                            <form
+                                                                action=""
+                                                                method="post" class="formAddToCart">
+                                                                @csrf
+                                                                <input type="hidden" name="id_product"
+                                                                       value="{{$product -> id}}">
+                                                                <a class="add-to-cart cart-addition" data-product-id="{{$product -> id}}" data-product-slug="{{$product -> slug}}" href="#"
+                                                                   data-button-action="add-to-cart"><i
+                                                                        class="novicon-cart"></i><span>Add to cart</span></a>
+                                                            </form>
+
 
                                                             <a class="addToWishlist  wishlistProd_22" href="#"
                                                                data-product-id="{{$product -> id}}"
@@ -561,6 +565,18 @@
                         $('.alert-modal').css('display', 'block');
                     else
                         $('.alert-modal2').css('display', 'block');
+                }
+            });
+        });  $(document).on('click', '.cart-addition', function (e) {
+            e.preventDefault();
+            $.ajax({
+                type: 'post',
+                url: "{{Route('site.cart.add')}}",
+                data: {
+                    'product_id': $(this).attr('data-product-id'),
+                    'product_slug' : $(this).attr('data-product-slug'),
+                },
+                success: function (data) {
                 }
             });
         });
