@@ -85,7 +85,7 @@ class ProductController extends Controller
 
             Product::whereId($request->product_id)->update($request->only(['price', 'special_price', 'special_price_type', 'special_price_start', 'special_price_end']));
 
-            return redirect()->route('admin.products')->with(['success' => 'تم التحديث بنجاح']);
+            return redirect()->route('admin.Product')->with(['success' => 'تم التحديث بنجاح']);
         } catch (\Exception $ex) {
 
         }
@@ -145,7 +145,7 @@ class ProductController extends Controller
             }
         }
 
-        return redirect()->back()->with(['success' => 'تم التحديث بنجاح']);
+        return redirect()->route('admin.Product')->with(['success' => 'تم التحديث بنجاح']);
 
     }catch(\Exception $ex){
 
