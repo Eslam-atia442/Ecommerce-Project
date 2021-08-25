@@ -48,7 +48,7 @@ Route::group(
 
 /////////////////////////////////////////// route for admin categories/ //////////////////////////////////////////
 
-        Route::group(['prefix' => 'categories'], function () {
+        Route::group(['prefix' => 'categories','middleware' => 'can:categories'], function () {
             Route::get('/','CategoriesController@index') -> name('admin.maincategories');
             Route::get('create','CategoriesController@create') -> name('admin.maincategories.create');
             Route::post('store','CategoriesController@store') -> name('admin.maincategories.store');
@@ -61,7 +61,7 @@ Route::group(
 
 /////////////////////////////////////////// route for admin Brands/ //////////////////////////////////////////
 
-        Route::group(['prefix' => 'brands'], function () {
+        Route::group(['prefix' => 'brands','middleware' => 'can:brands'], function () {
                 Route::get('/','BrandsController@index') -> name('admin.brands');
             Route::get('create','BrandsController@create') -> name('admin.brands.create');
             Route::post('store','BrandsController@store') -> name('admin.brands.store');
@@ -73,7 +73,7 @@ Route::group(
         /////////////////////////////////////////// route for admin tags/ //////////////////////////////////////////
 
 
-        Route::group(['prefix' => 'tags'], function () {
+        Route::group(['prefix' => 'tags','middleware' => 'can:tags'], function () {
             Route::get('/','TagsController@index') -> name('admin.tags');
             Route::get('create','TagsController@create') -> name('admin.tags.create');
             Route::post('store','TagsController@store') -> name('admin.tags.store');
@@ -84,7 +84,7 @@ Route::group(
 
 
         /////////////////////////////////////////// route for admin products/ //////////////////////////////////////////
-        Route::group(['prefix' => 'Product'], function () {
+        Route::group(['prefix' => 'Product','middleware' => 'can:products'], function () {
             Route::get('/','ProductController@index') -> name('admin.Product');
             Route::get('product_create','ProductController@create') -> name('admin.create.Product.info');
             Route::post('Store_ProductInfo','ProductController@store') -> name('admin.store.Product.info');
@@ -123,7 +123,7 @@ Route::group(
         /////////////////////////////////////////// route for admin options ///////////////////////////////////////////
 
 
-        Route::group(['prefix' => 'options'], function () {
+        Route::group(['prefix' => 'options','middleware' => 'can:options'], function () {
             Route::get('/','OptionsController@index') -> name('admin.options');
             Route::get('create','OptionsController@create') -> name('admin.create.options');
 
@@ -147,6 +147,22 @@ Route::group(
             Route::post('images', 'SliderController@saveSliderImages')->name('admin.sliders.images.store');
             Route::post('images/db', 'SliderController@saveSliderImagesDB')->name('admin.sliders.images.store.db');
 
+        });
+##################################route for dashboard admin roll ######################################
+        Route::group(['prefix' => 'roles'], function () {
+            Route::get('/', 'RolesController@index')->name('admin.roles.index');
+            Route::get('create', 'RolesController@create')->name('admin.roles.create');
+            Route::post('store', 'RolesController@saveRole')->name('admin.roles.store');
+            Route::get('/edit/{id}', 'RolesController@edit') ->name('admin.roles.edit') ;
+            Route::post('update/{id}', 'RolesController@update')->name('admin.roles.update');
+        });
+
+##################################route for dashboard admin roll ######################################
+
+        Route::group(['prefix' => 'users' , 'middleware' => 'can:users'], function () {
+            Route::get('/', 'UsersController@index')->name('admin.users.index');
+            Route::get('/create', 'UsersController@create')->name('admin.users.create');
+            Route::post('/store', 'UsersController@store')->name('admin.users.store');
         });
 
     });

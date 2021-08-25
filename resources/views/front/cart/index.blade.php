@@ -148,10 +148,8 @@
 
                                 </div>
 
-
                                 <div class="checkout text-xs-center card-block">
-                                    <a href="" type="button"
-                                       class="btn btn-primary"> proceed to payment
+                                    <a href="{{route('payment',$basket -> subTotal())}}" type="button" class="btn btn-primary"> proceed to payment
                                     </a>
                                 </div>
 

@@ -15,8 +15,6 @@ class LoginController extends Controller
 
 
     public function postlogin (Adminloginrequest $request ){
-    // lazem a3ml validation by make php artisan make:request Adminloginrequest
-
 
         $remember_me=$request->has('remember_me') ? true : false ;
 
