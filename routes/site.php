@@ -47,6 +47,11 @@ Route::group(
 
 
 
+        Route::get('payment/{amount}', 'PaymentController@getPayments') -> name('payment');
+        Route::post('payment', 'PaymentController@processPayment') -> name('payment.process');
+
+
+
 
     });
 
